@@ -40,10 +40,10 @@ Aşağıdakileri yapmak için aşağıdaki kopyalama işlevini kullanın:
 */
 
 
-function kopyala(/*kod buraya*/){
-  /*kod buraya*/
+function kopyala(dizi2){
+return dizi2;
 }
-
+kopyala(orijinalTatlar);
 
 /* Görev 2:
 Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları kabul etmelidir:
@@ -55,11 +55,34 @@ Bir dizinin tam olarak 25 çeşit olduğunu onaylayın. İşleviniz şunları ka
 Örneğin: dizi25Cesit(orijinalTatlar) kodunuz düzgün çalışıyorsa true değerini döndürür.
 */
 
-
-function dizi25Cesitmi(/*kod buraya*/){
-  /*kod buraya*/
+function dizi25Cesit(dizi);
+if(dizi.length == 25){
+  console.log(DOĞRU(true))
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function dizi25Cesitmi(dizi){
+  
+  if(dizi.length == 25){
+    return true;
+  }else{
+    return false;
+  }
+}
+dizi25Cesitmi(orijinalTatlar);
 
 /* Görev 3:
 Pastane sahibi size yeni bir lezzet fikriyle geldi: Kakule! Bunun da çok tutacağından çok emin. Bu lezzeti eklemek için diziyi değiştirmeniz gerekir.
@@ -74,9 +97,13 @@ Aşağıdakileri yapmak için cesitEkle işlevini kullanın:
 */
 
 
-function cesitEkle(/*kod buraya*/){
-  /*kod buraya*/
+
+
+function cesitEkle(tatlarDizisi, yeniTadi){
+   tatlarDizisi.unshift(yeniTadi);
+  return tatlarDizisi;
 }
+
 
 
 /* Cörev 4:
@@ -92,10 +119,14 @@ Aşağıdakileri yapmak için sonCesitiKaldir işlevini kullanın:
 */
 
 
-function sonCesitiKaldir(/*kod buraya*/){
-  /*kod buraya*/
-}
 
+function sonCesitiKaldir(dizi){
+  dizi.pop();
+  console.log(dizi);
+  return dizi;
+  
+}
+sonCesitiKaldir(orijinalTatlar)
 
 /* Görev 5:
 Dizideki belirli bir indeksteki çeşniyi döndüren bir işlev yazın.
@@ -108,10 +139,11 @@ Aşağıdakileri yapmak için aşağıdaki indekstekiCesitiGetir işlevini kulla
    Örneğin: indekstekiCesitiGetir(orijinalTatlar, 2) çalıştırılmasıyla, Kakule'in başarıyla eklendiği varsayarsak sonuç "Ceviz" olucaktır.
 */
 
-function indekstekiCesitiGetir(/*kod buraya*/){
-  /*kod buraya*/
+function indekstekiCesitiGetir(tadlarArray,  flavourIndex){
+  return tadlarArray[flavourIndex]
+ 
 }
-
+indekstekiCesitiGetir(orijinalTatlar, 2)
 
 /* Görev 6:
 
@@ -128,9 +160,12 @@ Aşağıdakileri yapmak için ismeGoreCesitCikar işlevini kullanın:
   İPUCU: Bunun için .splice() kullanabilirsiniz.
 */
 
-function ismeGoreCesitCikar(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreCesitCikar(tatlarDizisi,lezzetAdi){
+  let index1 = tatlarDizisi.indexOf(lezzetAdi)
+  tatlarDizisi.splice(index1,1);
+  return  tatlarDizisi
 }
+console.log(ismeGoreCesitCikar(orijinalTatlar, "Tarçın"));
 
 
 /* Görev 7:
@@ -153,10 +188,16 @@ Aşağıdakileri yapmak için ismeGoreFiltrele işlevini kullanın:
   Bu sorunu çözmek için GELİŞMİŞ DİZİ YÖNTEMLERİNİ (yani .filter) KULLANMAYIN.
 */
 
-
-function ismeGoreFiltrele(/*kod buraya*/){
-  /*kod buraya*/
+function ismeGoreFiltrele(tatlardizisi, flavourName){
+  let filtre = []
+  for (let i=0; i<tatlardizisi.length; i++){
+      if(tatlardizisi[i].includes(flavourName)){
+          filtre.push(tatlardizisi[i])
+      }
+  }
+  return filtre
 }
+console.log(ismeGoreFiltrele(orijinalTatlar, "Çikolata"));
 
 
 
@@ -172,10 +213,18 @@ Aşağıdakileri yapmak için ortalamaKelimeSayisi işlevini kullanın:
    Örneğin: ortalamaKelimeSayisi(orijinalTatlar) 0 ile 2 arasında bir sayı döndürmelidir.
 */
 
-function ortalamaKelimeSayisi(/*kod buraya*/){
-  /*kod buraya*/
-}
+function ortalamaKelimeSayisi(orijinalTatlar){
+  let uzunluk = 0;
 
+  orijinalTatlar.map(
+    
+    function(tatli){
+    uzunluk += tatli.split(' ').length
+  })
+
+  return uzunluk/orijinalTatlar.length
+}
+ortalamaKelimeSayisi(orijinalTatlar);
 
 /* ALIŞTIRMA 2:
 Firma mevcut tatların yanında artık mevsimlik lezzetler ve hatta bölgesel lezzetler de sunmaktadır. Toplam 25 lezzet aromasını
@@ -190,8 +239,9 @@ Aşağıdakileri yapmak için rastgeleTatlar işlevini ve yeni dizileri kullanı
 */
 
 
-function rastgeleTatlar(/*kod buraya*/){
-  /*kod buraya*/
+function rastgeleTatlar(orijinalTatlar,yeniTatlar, mevsimlikTatlar, bolgeselTatlar){
+    const newArray =  orijinalTatlar.concat(yeniTatlar, mevsimlikTatlar, bolgeselTatlar);
+    return newArray(Math.floor(Math.random() * newArray.length))
 }
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
